@@ -26,6 +26,8 @@ interface FieldProps {
   required?: boolean;
   minLength?: number;
   maxLength?: number;
+  customValidation?: (value: string) => string | undefined;
+
 }
 
 interface SignupFormProps {
@@ -45,16 +47,18 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData }) => {
   };
 
   const renderField = (field: FieldProps) => {
-    const { label, name, type, options, defaultValue, required, minLength, maxLength } = field;
-
+    const { label, name, type, options, defaultValue, required, minLength, maxLength, customValidation } = field;
+  
     const commonProps = {
       ...register(name, {
+        required: required? `please enter proper ${label}`:false,
         minLength: minLength ? { value: minLength, message: `${label} must be at least ${minLength} characters` } : undefined,
         maxLength: maxLength ? { value: maxLength, message: `${label} must not exceed ${maxLength} characters` } : undefined,
+        validate: customValidation ? (value) => customValidation(value) : undefined,
       }),
       defaultValue: defaultValue,
     };
-
+    
     switch (type) {
       case 'TEXT':
         return (

@@ -39,7 +39,7 @@ const formData = [
     name: 'loveReact',
     type: 'RADIO',
     defaultValue: '1',
-    required: true,
+    required: false,
     options: ['Yes', 'No'],
   },
 

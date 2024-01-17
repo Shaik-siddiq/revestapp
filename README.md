@@ -6,7 +6,7 @@ step 1:
 git clone https://github.com/Shaik-siddiq/revestapp.git
 
 step 2: 
-npm install
+npm install -f
 
 step 3: 
 npm run dev
