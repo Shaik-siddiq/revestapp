@@ -2,10 +2,11 @@ This is a [Next.js](https://nextjs.org/) project  [`create-next-app`](https://gi
 
 
 ## Getting Started
-step 1: 
+step 1: git clone 
+step 2: 
 npm install
 
-step 2: 
+step 3: 
 npm run dev
 # or
 yarn dev
