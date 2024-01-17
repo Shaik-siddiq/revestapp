@@ -2,7 +2,9 @@ This is a [Next.js](https://nextjs.org/) project  [`create-next-app`](https://gi
 
 
 ## Getting Started
-step 1: git clone 
+step 1:
+git clone https://github.com/Shaik-siddiq/revestapp.git
+
 step 2: 
 npm install
 
