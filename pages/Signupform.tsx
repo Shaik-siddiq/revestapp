@@ -34,14 +34,21 @@ interface SignupFormProps {
   formData: FieldProps[];
 }
 
-const SignupForm: React.FC<SignupFormProps> = ({ formData }) => {
+const SignupForm: React.FC<SignupFormProps> = ({ formData }) => {  
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FormData>();
-
+  } = useForm<FormData>({
+    defaultValues: {
+      fullName: "John Doe",
+      email: "hello@mail.com",
+      gender: "Male",
+      loveReact: "Yes",
+    }
+  });
+  
   const onSubmit = (data: FormData) => {
     console.log(data);
   };
@@ -58,7 +65,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData }) => {
       }),
       defaultValue: defaultValue,
     };
-    
+  
     switch (type) {
       case 'TEXT':
         return (
@@ -82,23 +89,30 @@ const SignupForm: React.FC<SignupFormProps> = ({ formData }) => {
             <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
           </FormControl>
         );
-      case 'RADIO':
-        return (
-          <FormControl component="fieldset">
-            <label>{label}</label>
-            <RadioGroup row aria-label={label} name={name} defaultValue={defaultValue}>
-              {options &&
-                options.map((option: string, index: number) => (
-                  <FormControlLabel key={index} value={option} control={<Radio />} label={option} />
-                ))}
-            </RadioGroup>
-            <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
-          </FormControl>
-        );
+        case 'RADIO':
+          return (
+            <FormControl component="fieldset">
+              <label>{label}</label>
+              <RadioGroup row aria-label={label} name={name} defaultValue={defaultValue}>
+                {options &&
+                  options.map((option: string, index: number) => (
+                    <FormControlLabel
+                      key={index}
+                      value={option}
+                      control={<Radio />}
+                      label={option}
+                      {...register(name)} 
+                    />
+                  ))}
+              </RadioGroup>
+              <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
+            </FormControl>
+          );        
       default:
         return null;
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -29,16 +29,16 @@ const formData = [
   {
     label: 'Gender',
     name: 'gender',
-    type: 'LIST',
+    type: 'RADIO',
     options: ['Male', 'Female', 'Others'],
     required: true,
-    defaultValue: '1'
+    defaultValue: 'Male'
   },
   {
     label: 'Love React?',
     name: 'loveReact',
     type: 'RADIO',
-    defaultValue: '1',
+    defaultValue: 'Yes',
     required: false,
     options: ['Yes', 'No'],
   },
